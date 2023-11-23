@@ -205,8 +205,9 @@ import { ref } from 'vue';
         overflow: hidden;
     }
     .navbar {
-        position: relative;
+        height: 100%;
         z-index: 999999;
+        border: 2px solid yellow;
     }
     nav {
         width: 100%;
@@ -244,15 +245,13 @@ import { ref } from 'vue';
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
+        min-height: 100vh;
         background: rgba(0, 0, 0, 0.01);
         backdrop-filter: blur(2px);
         transition: var(--transition);
         display: flex;
-        opacity: 0;
-        z-index: -1;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        /* opacity: 0;
+        z-index: -1; */
     }
 
     .overlay.show {
@@ -261,16 +260,16 @@ import { ref } from 'vue';
     }
 
     .sidebar {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         width: 80%;
-        max-width: 100vh;
         height: 100%;
         background: var(--primary-normal-1);
         transition: all 0.5s linear;
-        z-index: -1;
-        transform: translateX(-100%);
+        /* z-index: -1;
+        transform: translateX(-100%); */
+        border: 1px solid red;
     }
 
     .show .sidebar {
