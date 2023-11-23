@@ -94,7 +94,6 @@ import { ref } from 'vue';
         /* height: 29.88rem; */
         display: grid;
         grid-template-rows: 1fr auto;
-        border: 1px solid red;
         height: calc(100vh - 11rem);
     }
 
