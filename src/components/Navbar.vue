@@ -21,13 +21,11 @@
 
                     <div class="close-nav" @click="showNav = false">
                         <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-7 h-7">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="mid">
                     <article class="header">
@@ -91,16 +89,17 @@ import { ref } from 'vue';
     }
     .last {
         padding: 1.75rem 1rem;
-        /* height: 29.88rem; */
-        display: grid;
-        grid-template-rows: 1fr auto;
-        height: calc(100vh - 11rem);
+        height: calc(100% - 11rem);
+        /* border: 2px solid red; */
+        position: relative;
     }
 
     .last .btm {
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        position: absolute;
+        bottom: 1.75rem;
     }
 
     .last .btm h3 {
@@ -234,7 +233,7 @@ import { ref } from 'vue';
         position: absolute;
         right: -3rem;
         top: 0.5rem;
-        border: 2px solid var(--text-color-500);
+        border: 2px solid white;
         /* padding: 0.2rem; */
         display: grid;
         place-items: center;
