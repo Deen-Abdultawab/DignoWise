@@ -3,7 +3,7 @@
         <div class="logo-img">
             <img src="../assets/images/logo.png" alt="">
         </div>
-        <form @click.prevent="submitForm" class="input-container">
+        <form @submit.prevent="submitForm" class="input-container">
             <h3>Create new account</h3>
             <div class="input-field">
                 <input type="text" placeholder="Email address">
@@ -47,12 +47,12 @@
                 <p></p>
             </div>
            
-            <button class="btn">Sign up</button>
-            <div class="auth-req">
-                <p>Already have an account?</p> 
-                <router-link class="link" :to="{ name: 'signin'}">Log In</router-link>
-            </div>
+            <button type="submit" class="btn">Sign up</button>
         </form>
+        <div class="auth-req">
+            <p>Already have an account?</p> 
+            <router-link class="link" :to="{ name: 'signin'}">Log In</router-link>
+        </div>
         <div class="divider">
             <span class="line"></span>
             <p>or</p>

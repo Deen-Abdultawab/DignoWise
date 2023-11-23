@@ -91,9 +91,11 @@ import { ref } from 'vue';
     }
     .last {
         padding: 1.75rem 1rem;
-        height: 29.88rem;
+        /* height: 29.88rem; */
         display: grid;
         grid-template-rows: 1fr auto;
+        border: 1px solid red;
+        height: calc(100vh - 11rem);
     }
 
     .last .btm {
@@ -231,7 +233,7 @@ import { ref } from 'vue';
         width: 2rem;
         height: 2rem;
         position: absolute;
-        left: 19rem;
+        right: -3rem;
         top: 0.5rem;
         border: 2px solid var(--text-color-500);
         /* padding: 0.2rem; */
@@ -244,7 +246,7 @@ import { ref } from 'vue';
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         background: rgba(0, 0, 0, 0.01);
         backdrop-filter: blur(2px);
         transition: var(--transition);
@@ -265,7 +267,7 @@ import { ref } from 'vue';
         top: 0;
         left: 0;
         width: 80%;
-        max-width: 100%;
+        max-width: 100vh;
         height: 100%;
         background: var(--primary-normal-1);
         transition: all 0.5s linear;
