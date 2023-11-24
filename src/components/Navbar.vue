@@ -92,8 +92,6 @@ import { ref } from 'vue';
     }
     .last {
         padding: 1.75rem 1rem;
-        height: calc(100% - 11rem);
-        position: relative;
     }
 
     .last .btm {
@@ -240,7 +238,7 @@ import { ref } from 'vue';
     }
 
     .overlay {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;

@@ -1,6 +1,6 @@
 <template>
-    <Navbar />
     <div class="chat-page">
+        <Navbar />
         <section class="text-area">
             <div class="intro-section" v-if="!startDiagnosis">
                 <div class="logo">
@@ -137,8 +137,9 @@ import { ref } from 'vue'
 
     .chat-page {
         display: grid;
-        grid-template-rows: 1fr auto;
-        min-height: 100vh;
+        grid-template-rows: auto 1fr auto;
+        height: 100vh;
+        border: 1px solid red;
     }
 
     .icon {
