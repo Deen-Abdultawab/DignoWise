@@ -5,6 +5,9 @@
                 <img src="../assets/images/menu.png" alt="">
             </div>
             <h3 class="hero">Symptom Assessment</h3>
+            <div class="menu" @click="showNav = true">
+                <img src="../assets/images/article-icon.png" alt="">
+            </div>
         </nav>
         <div class="overlay" :class="{ show: showNav}">
             <div class="sidebar">
@@ -90,7 +93,6 @@ import { ref } from 'vue';
     .last {
         padding: 1.75rem 1rem;
         height: calc(100% - 11rem);
-        /* border: 2px solid red; */
         position: relative;
     }
 
@@ -121,7 +123,7 @@ import { ref } from 'vue';
         font-size: 0.875rem;
         font-style: normal;
         font-weight: 500;
-        line-height: 1.125rem; /* 128.571% */
+        line-height: 1.125rem;
         letter-spacing: 0.0175rem;
     }
 
@@ -204,16 +206,13 @@ import { ref } from 'vue';
         border-radius: 50%;
         overflow: hidden;
     }
-    .navbar {
-        height: 100%;
-        z-index: 999999;
-        border: 2px solid yellow;
-    }
+
+    
     nav {
         width: 100%;
         display: flex;
         align-items: center;
-        gap: 2.4rem;
+        justify-content: space-between;
         padding: 0.6875rem 0.875rem;
         z-index: 99999;
         background: var(--primary-normal);
@@ -250,8 +249,8 @@ import { ref } from 'vue';
         backdrop-filter: blur(2px);
         transition: var(--transition);
         display: flex;
-        /* opacity: 0;
-        z-index: -1; */
+        opacity: 0;
+        z-index: -1;
     }
 
     .overlay.show {
@@ -267,9 +266,8 @@ import { ref } from 'vue';
         height: 100%;
         background: var(--primary-normal-1);
         transition: all 0.5s linear;
-        /* z-index: -1;
-        transform: translateX(-100%); */
-        border: 1px solid red;
+        z-index: -1;
+        transform: translateX(-100%);
     }
 
     .show .sidebar {

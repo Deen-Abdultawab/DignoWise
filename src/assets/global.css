@@ -6,10 +6,7 @@
     box-sizing: border-box;
 }
 
-body, html {
-    height: 100%;
-     position: relative;
-}
+
 
 body {
     font-family: 'Nunito';
@@ -43,6 +40,7 @@ a {
     --primary-normal: #7229E8;
     --primary-normal-1: #25035c;
     --primary-normal-active: #5B21BA;
+    --primary-dark: #561FAE;
     --text-400: #5C5C5C;
     --primary-normal-active: #5B21BA;
     --text-light-active: #B6B6B6;
@@ -55,4 +53,6 @@ a {
     --primary-light: #F1EAFD;
     --primary-dark-hover: #44198B;
     --text-50: #E8E8E8;
+    --text-200: #B6B6B6;
+    --spacing-6-pt: 2rem;
 }
