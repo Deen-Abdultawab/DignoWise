@@ -1,8 +1,11 @@
 <template>
   
-  <router-view/>
+  <div class="body">
+    <router-view/>
+  </div>
 </template>
 
 <style>
+  
 
 </style>

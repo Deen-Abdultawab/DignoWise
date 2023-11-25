@@ -111,6 +111,10 @@ import { useRouter } from 'vue-router';
 
 <style scoped>
 
+    .user-info {
+        padding-bottom: 1.5rem;
+    }
+
     .btns {
         display: flex;
         align-items: center;

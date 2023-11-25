@@ -55,18 +55,18 @@
         </div>
         <div class="divider">
             <span class="line"></span>
-            <p>or</p>
+            <!-- <p>or</p> -->
             <span class="line"></span>
         </div>
-        <div class="alt-auth-container">
+        <!-- <div class="alt-auth-container">
             <div class="auth">
                 <img src="../assets/images/google.png" alt="">
                 <h3>Sign in using Google</h3>
             </div>
-        </div>
+        </div> -->
          <div class="terms">
             <input type="checkbox" name="terms" id="terms">
-            <label for="terms">I have read and agreed to the <span>Terms of Use</span> and <span>Privacy Policy</span> </label>
+            <label for="terms">I have read and agreed to the <span class="cus-btn" @click="$router.push({ name: 'terms'})">Terms of Use</span> and <span class="cus-btn"  @click="$router.push({ name: 'privacy'})">Privacy Policy</span> </label>
         </div>
         <!-- <footer>
             <h3>Terms of Use</h3>

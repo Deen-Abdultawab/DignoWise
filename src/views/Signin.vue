@@ -38,16 +38,16 @@
             <p>or</p>
             <span class="line"></span>
         </div>
-        <div class="alt-auth-container">
+        <!-- <div class="alt-auth-container">
             <div class="auth">
                 <img src="../assets/images/google.png" alt="">
                 <h3>Sign in using Google</h3>
             </div>
-        </div>
+        </div> -->
         <footer>
-            <h3>Terms of Use</h3>
+            <h3 class="cus-btn"  @click="$router.push({ name: 'terms'})">Terms of Use</h3>
             <span></span>
-            <h3>Privacy Policy</h3>
+            <h3 class="cus-btn"  @click="$router.push({ name: 'privacy'})">Privacy Policy</h3>
         </footer>
     </div>
 </template>

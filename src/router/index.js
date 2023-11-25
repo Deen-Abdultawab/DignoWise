@@ -29,6 +29,27 @@ const routes = [
     component: () => import('../views/ChatPage.vue'),
     props: true
   },
+  {
+    path: '/settings/:userId',
+    name: 'settings',
+    component: () => import('../views/Settings.vue'),
+    props: true
+  },
+  {
+    path: '/article',
+    name: 'article',
+    component: () => import('../views/Article.vue'),
+  },
+  {
+    path: '/terms',
+    name: 'terms',
+    component: () => import('../views/Terms.vue'),
+  },
+  {
+    path: '/privacy',
+    name: 'privacy',
+    component: () => import('../views/Privacy.vue'),
+  },
 ]
 
 const router = createRouter({

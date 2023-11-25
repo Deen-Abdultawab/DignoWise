@@ -6,6 +6,14 @@
     box-sizing: border-box;
 }
 
+body, html {
+    height: 100%;
+}
+
+html {
+    display: block;
+}
+
 
 
 body {
@@ -30,7 +38,7 @@ a {
     font: inherit;
 }
 
-.btn, .menu {
+.btn, .menu, .cus-btn {
     cursor: pointer;
     border: none;
 }
@@ -42,7 +50,10 @@ a {
     --primary-normal-active: #5B21BA;
     --primary-dark: #561FAE;
     --text-400: #5C5C5C;
+    --text-500: #151515;
+    --text-800: #101010;
     --primary-normal-active: #5B21BA;
+    --primary-light-active: #D3BDF8;
     --text-light-active: #B6B6B6;
     --text-normal: #151515;
     --text-color-500: #1D1C1A;
@@ -52,6 +63,7 @@ a {
     --text-color-400: #434240;
     --primary-light: #F1EAFD;
     --primary-dark-hover: #44198B;
+    --primary-light-hover: #EADFFC;
     --text-50: #E8E8E8;
     --text-200: #B6B6B6;
     --spacing-6-pt: 2rem;

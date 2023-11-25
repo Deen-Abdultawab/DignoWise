@@ -1,6 +1,6 @@
 <template>
     <div class="chat-page">
-        <Navbar />
+        <Navbar :logo="logo" :title="title" class="navbar"/>
         <section class="text-area">
             <div class="intro-section" v-if="!startDiagnosis">
                 <div class="logo">
@@ -22,7 +22,7 @@
                     
                         <article class="card">
                             <h3 class="header">Decision support</h3>
-                            <p class="descr">DignoWise will aid you decision wheher you need to seek in-person medical care based o the Ai generated responses, enhancing health decision - making</p>
+                            <p class="descr">DignoWise will aid you decision whether you need to seek in-person medical care based o the Ai generated responses, enhancing health decision - making</p>
                         </article>
                     </div>
                 </div>
@@ -54,6 +54,8 @@ import { ref } from 'vue'
         props: ['userId'],
         setup(){
             const startDiagnosis = ref(false)
+            const title = 'Symptoms Assesement'
+            const logo = 'article-icon.png'
 
             function handleState(){
                 if(startDiagnosis.value === false){
@@ -62,12 +64,16 @@ import { ref } from 'vue'
             }
 
 
-            return { startDiagnosis, handleState }
+            return { startDiagnosis, handleState,title, logo }
         }
     }
 </script>
 
 <style scoped>
+
+    .nav-section {
+        margin-top: 0.5rem;
+    }
     .logo {
         width: 4.0625rem;
         height: 5.25rem;
@@ -139,7 +145,13 @@ import { ref } from 'vue'
         display: grid;
         grid-template-rows: auto 1fr auto;
         height: 100vh;
-        border: 1px solid red;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .navbar {
+        position: sticky;
+        top: 0;
     }
 
     .icon {
@@ -168,8 +180,13 @@ import { ref } from 'vue'
     }
 
     .text-area {
-        margin-bottom: 3.13rem;
+        padding-bottom: 1rem;
         overflow-y: auto;
+        height: 100%;
+    }
+
+    .text-area::-webkit-scrollbar {
+        display: none;
     }
 
     .btns input:focus {
