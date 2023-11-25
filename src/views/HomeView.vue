@@ -6,9 +6,11 @@
     <div class="hero-container">
       <h3 class="hero-text"><span>DignoWise:</span> Your symptoms and Diagnosis AI Chatbot</h3>
       <p class="hero-desc">This chat bot is designed to provide information and support, but it's important to consult with a healthcare professional when necessary. Let's embark on this journey to a healthier you together.</p>
-      <button class="btn">
-        Get Started
-      </button>
+      <router-link :to="{ name: 'signup'}">
+        <button class="btn">
+          Get Started
+        </button>
+      </router-link>
     </div>
     <div class="auth-req">
       <p>Already have a account?</p> 
