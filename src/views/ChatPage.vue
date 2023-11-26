@@ -27,14 +27,14 @@
                     </div>
                 </div>
             </div>
-            <ChatBox v-else/>
+            <ChatBox v-else :chats="chats"/>
         </section>
         <section class="nav-section section-container">
             <div class="btns">
                 <div class="mic icon btn">
                     <img src="../assets/images/microphone.png" alt="">
                 </div>
-                <input type="text" placeholder="Type your symptom here.....">
+                <input type="text" placeholder="Type your symptom here....." v-model="message">
                 <div class="send icon btn" @click="handleState">
                     <img src="../assets/images/paper-plane.png" alt="">
                 </div>
@@ -48,7 +48,7 @@
 <script>
 import Navbar from '@/components/Navbar.vue'
 import ChatBox from '@/components/ChatBox.vue'
-import { ref } from 'vue'
+import { onUpdated, ref } from 'vue'
     export default {
         components: { Navbar, ChatBox },
         props: ['userId'],
@@ -56,15 +56,33 @@ import { ref } from 'vue'
             const startDiagnosis = ref(false)
             const title = 'Symptoms Assesement'
             const logo = 'article-icon.png'
+            const message = ref('')
+            
+            const chats = ref([])
+            
+            let num = 0
 
             function handleState(){
-                if(startDiagnosis.value === false){
+                console.log(message.value)
+                if(message.value.length > 0){
+                    num++
+                    chats.value.push(
+                         {
+                            id: num,
+                            message: message.value,
+                            time: Date().slice(16,21)
+                        }
+                    )
+                    message.value = ''
                     startDiagnosis.value = true
+                } else {
+                    alert('enter symptoms')
                 }
+                
             }
 
 
-            return { startDiagnosis, handleState,title, logo }
+            return { startDiagnosis, handleState,title, logo, message, chats }
         }
     }
 </script>

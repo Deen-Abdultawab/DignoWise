@@ -6,19 +6,19 @@
         <form class="input-container">
             <h3>Welcome back</h3>
             <div class="input-field">
-                <input type="text" placeholder="Email address">
+                <input type="email" required placeholder="Email address" v-model="mail">
             </div>
             <div class="custom-container input-field">
-                <div class="custom">
-                    <input type="text" placeholder="Password">
+                 <div class="custom">
+                    <input :type="[showPassword ? 'text': 'password']" placeholder="Enter Password" required v-model="password">
                     <div class="icons">
-                        <div class="icon" v-if="clicked">
+                        <div class="icon cus-btn" @click="showPassword = false" v-if="showPassword">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </div>
-                        <div class="icon" v-if="!clicked">
+                        <div class="icon cus-btn" @click="showPassword = true" v-if="!showPassword">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M2.4998 2.5L5.49076 5.49097M17.4998 17.5L14.5091 14.5093M11.5622 15.6872C11.0562 15.7831 10.5341 15.8333 10.0002 15.8333C6.2688 15.8333 3.11022 13.3809 2.04834 9.99997C2.33742 9.07958 2.78189 8.22801 3.35099 7.47598M8.23203 8.23223C8.68444 7.77982 9.30944 7.5 9.9998 7.5C11.3805 7.5 12.4998 8.61929 12.4998 10C12.4998 10.6904 12.22 11.3154 11.7676 11.7678M8.23203 8.23223L11.7676 11.7678M8.23203 8.23223L5.49076 5.49097M11.7676 11.7678L5.49076 5.49097M11.7676 11.7678L14.5091 14.5093M5.49076 5.49097C6.79061 4.65295 8.3386 4.16667 10.0002 4.16667C13.7315 4.16667 16.8901 6.61909 17.952 10C17.3629 11.8756 16.1286 13.4654 14.5091 14.5093" stroke="#5C5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -53,11 +53,17 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
     export default {
         setup(){
             const clicked = false
+            const showPassword = ref(false)
+            const mail = ref('')
+            const password = ref('')
+            
 
-            return{ clicked }
+            return{ clicked, showPassword, mail, password }
         }
     }
 </script>

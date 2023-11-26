@@ -1,13 +1,20 @@
 <template>
     <section class="chat-container section-container">
-    
-        <div class="user-chat">
-            <div class="user-img">
-                <img src="../assets/images/profileImg.png" alt="">
+        <div class="chat-box" v-for="chat in chats" :key="chat.id">
+            <div class="user-chat">
+                <div class="user-img">
+                    <img src="../assets/images/profileImg.png" alt="">
+                </div>
+                <div contenteditable="true" class="user-text" :value="chat.message" ref="chatInput" readonly>
+                    {{ chat.message }}
+                </div>
+                <div class="edit-btn" @click="handleFocus" :data-id="chat.id">
+                    <img src="../assets/images/pencil.png" alt="" :data-id="chat.id">
+                </div>
             </div>
-            <h3 class="user-text">I’ve been feeling tired and experiencing frequent headaches</h3>
-            <div class="edit-btn">
-                <img src="../assets/images/pencil.png" alt="">
+            <div class="btn-container">
+                <button class="sub-btn cus-btn" @click="handleSubmit" :data-id="chat.id">Submit</button>
+                <button class="can-btn cus-btn" @click="handleCancel" :data-id="chat.id">Cancel</button>
             </div>
         </div>
         <div class="bot-chat">
@@ -15,9 +22,11 @@
                 <img src="../assets/images/chat-logo.png" alt="">
             </div>
             <div class="bot-text-field">
-                <h3>I’m sorry to hear that. I’d like to help. Can you tell me more about your symptoms? Have you noticed any patterns or specific triggers for headache?</h3>
+                <div>
+                    <h3>I’m sorry to hear that. I’d like to help. Can you tell me more about your symptoms? Have you noticed any patterns or specific triggers for headache?</h3>
+                </div>
                 <div class="icons">
-                    <div class="icon copy">
+                    <div class="icon copy" @click="handleCopy">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M6.66659 4.16667H4.99992C4.07944 4.16667 3.33325 4.91286 3.33325 5.83333V15.8333C3.33325 16.7538 4.07944 17.5 4.99992 17.5H13.3333C14.2537 17.5 14.9999 16.7538 14.9999 15.8333V15M6.66659 4.16667C6.66659 5.08714 7.41278 5.83333 8.33325 5.83333H9.99992C10.9204 5.83333 11.6666 5.08714 11.6666 4.16667M6.66659 4.16667C6.66659 3.24619 7.41278 2.5 8.33325 2.5H9.99992C10.9204 2.5 11.6666 3.24619 11.6666 4.16667M11.6666 4.16667H13.3333C14.2537 4.16667 14.9999 4.91286 14.9999 5.83333V8.33333M16.6666 11.6667H8.33325M8.33325 11.6667L10.8333 9.16667M8.33325 11.6667L10.8333 14.1667" stroke="#A2A2A2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -45,16 +54,129 @@
                 </div>
             </div>
         </div>
+                <p class="active">{{ activeMessage }}</p>
     </section>
 </template>
 
 <script>
+import { ref } from 'vue'
+
+
+
     export default {
+        props: ['chats'],
+        setup(props){
+            const edit = ref(false)
+            const chatInput = ref(null)
+            const activeMessage = ref('')
+
+
+           function handleFocus(e){
+                const targetElement = e.currentTarget
+                const targetInput = targetElement.previousElementSibling
+                targetElement.parentElement.nextElementSibling.classList.add('show')
+                targetInput.readOnly = false
+                targetInput.focus()
+                edit.value = true
+
+                
+                
+           }
+
+           function handleSubmit(e){
+            const targetElement = e.currentTarget
+            const targetId = targetElement.dataset.id
+            const targetInput = targetElement.parentElement.previousElementSibling.children[1]
+
+            console.log(targetInput)
+
+                props.chats.forEach(chat => {
+                    if(chat.id === targetId){
+                         chat.message = targetInput.value
+                    }
+                })
+                targetInput.readOnly = true
+                targetInput.blur()
+                targetElement.parentElement.classList.remove('show')
+           }
+
+           function handleCancel(e){
+                const targetElement = e.currentTarget
+                const targetInput = targetElement.parentElement.previousElementSibling.children[1]
+                targetInput.readOnly = true
+                targetInput.blur()
+                targetElement.parentElement.classList.remove('show')
+           }
+
+           function handleCopy(e){
+                const targetElement = e.currentTarget.parentElement.previousElementSibling
+
+                const storage = document.createElement('textarea')
+                storage.value = targetElement.children[0].innerHTML
+                targetElement.appendChild(storage)
+
+                storage.select()
+                storage.setSelectionRange(0, 999999)
+                document.execCommand('copy')
+                targetElement.removeChild(storage)
+                activeMessage.value = 'copied to clipboard'
+                setTimeout(()=>{
+                    activeMessage.value = ''
+                }, 1000)
+
+                console.log(targetElement.style)
+           }
+
+            
+
+            return {handleFocus, edit, handleSubmit, chatInput, handleCancel, handleCopy, activeMessage}
+        }
         
     }
 </script>
 
 <style scoped>
+
+.btn-container {
+    width: 100%;
+    align-items: center;
+    justify-content: end;
+    gap: 2.5rem;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.show {
+    display: flex;
+}
+
+.active {
+    color: green;
+    font-size: 0.875rem;
+    font-style: normal;
+}
+
+.sub-btn {
+    border-radius: 0.5rem;
+    background: var(--primary-normal-active, #5B21BA);
+    padding: 0.6875rem 1.5rem;
+    color: var(--primary-light, #F1EAFD);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.125rem; /* 128.571% */
+    letter-spacing: 0.0175rem;
+}
+
+.can-btn {
+    color: var(--primary-normal, #7229E8);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25rem; /* 125% */
+    letter-spacing: 0.015rem;
+    background: none;
+}
     .chat-container {
         padding-top: 0.75rem;
     }
@@ -81,7 +203,17 @@
         line-height: 1.25rem; /* 142.857% */
         letter-spacing: 0.0175rem;
         width: auto;
+        border: none;
+        background: inherit;
+        height: auto;
+        max-height: 10rem;
+        /* border: 1px solid red; */
 
+    }
+
+    .user-text:focus {
+        border: none;
+        outline: none;
     }
 
     .edit-btn {
@@ -113,13 +245,18 @@
     .icons .icon {
         width: 1.25rem;
         height: 1.25rem;
+        cursor: pointer;
     }
+
+
 
     .icons {
         display: flex;
         align-items: center;
         gap: 1rem;
     }
+
+
 
     .bot-chat h3 {
         color: #000;

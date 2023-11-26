@@ -25,57 +25,36 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue';
+import { ref } from 'vue';
     export default {
         components: { Navbar },
         setup(){
             const title = 'Health Articles'
             const logo = 'article-2.png'
+            const url = 'https://newsapi.org/v2/top-headlines?country=ng&category=health&apiKey=9dc43693000c4e3896b62cec6d15cffc'
+            const items = ref([])
+            const articles = ref([])
 
-            const articles = [
-                {
-                    id: 1,
-                    src: 'img1.png',
-                    title: 'Do children get migraine headaches? What parents need to know',
-                    source: 'Harvard Health Publishing'
-                },
-                {
-                    id: 2,
-                    src: 'img2.png',
-                    title: 'Veggie Burgers: Health Tips from a Dietitian',
-                    source: 'Johns Hopkins Medicine'
-                },
-                {
-                    id: 3,
-                    src: 'img3.png',
-                    title: 'Kidneys, eyes, ears, and more: Why do we have a spare?',
-                    source: 'Harvard Health Publishing'
-                },
-                {
-                    id: 4,
-                    src: 'img4.png',
-                    title: 'Extreme heat projected to increase cardiovascular deaths',
-                    source: 'National Institutes of Health (NIH)'
-                },
-                {
-                    id: 5,
-                    src: 'img5.png',
-                    title: 'Opill: Is this new birth control pill right for you?',
-                    source: 'Harvard Health Publishing'
-                },
-                {
-                    id: 6,
-                    src: 'img6.png',
-                    title: 'Mammogram Age Guidelines: What You Need to Know',
-                    source: 'Johns Hopkins Medicine'
-                },
-                {
-                    id: 7,
-                    src: 'img7.png',
-                    title: 'High levels of particulate air pollution associated with increased breast cancer incidence',
-                    source: 'Harvard Health Publishing'
-                },
-            ]
+            // const articles = [
+            //     {
+            //         id: 1,
+            //         src: 'img1.png',
+            //         title: 'Do children get migraine headaches? What parents need to know',
+            //         source: 'Harvard Health Publishing'
+            //     },
+            // ]
 
+            function fetchData(){
+                
+            }
+
+            fetchData()
+            
+            
+            
+           
+            console.log(items.value)
+            
             return { title, logo , articles}
         }
     }

@@ -8,7 +8,7 @@
             <div class="inputs">
                 <div class="custom-container input-field">
                     <div class="custom">
-                        <input type="text" placeholder="First Name">
+                        <input type="text" placeholder="First Name" required v-model="firstName">
                         <div class="icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M12.6935 4.36019L15.6398 7.30647M13.9435 3.11019C14.7571 2.2966 16.0762 2.2966 16.8898 3.11019C17.7034 3.92379 17.7034 5.24288 16.8898 6.05647L5.41667 17.5296H2.5V14.5537L13.9435 3.11019Z" stroke="#5C5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="custom-container input-field">
                     <div class="custom">
-                        <input type="text" placeholder="Last Name">
+                        <input type="text" placeholder="Last Name" required v-model="lastName">
                         <div class="icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M12.6935 4.36019L15.6398 7.30647M13.9435 3.11019C14.7571 2.2966 16.0762 2.2966 16.8898 3.11019C17.7034 3.92379 17.7034 5.24288 16.8898 6.05647L5.41667 17.5296H2.5V14.5537L13.9435 3.11019Z" stroke="#5C5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -27,8 +27,8 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <select name="gender" id="gender">
-                        <option value="Gender">Gender</option>
+                    <select name="gender" id="gender" required v-model="gender">
+                        <option value="" disabled>Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Others">Others</option>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="custom-container input-field">
                     <div class="custom">
-                        <input type="date" placeholder="Date of birth (MM/DD/YY)">
+                        <input type="date" placeholder="Date of birth (MM/DD/YY)" required v-model="date">
                         <div class="icons">
                             <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M6.66667 5.83333V2.5M13.3333 5.83333V2.5M5.83333 9.16667H14.1667M4.16667 17.5H15.8333C16.7538 17.5 17.5 16.7538 17.5 15.8333V5.83333C17.5 4.91286 16.7538 4.16667 15.8333 4.16667H4.16667C3.24619 4.16667 2.5 4.91286 2.5 5.83333V15.8333C2.5 16.7538 3.24619 17.5 4.16667 17.5Z" stroke="#5C5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -47,8 +47,8 @@
                 </div>
                 
                 <div class="input-field">
-                    <select name="highbp" id="highbp">
-                        <option value="">Any allergies? if Yes, kindly state it</option>
+                    <select name="highbp" id="highbp" required v-model="highBloodPressure">
+                        <option value="" disabled>Any allergies? if Yes, kindly state it</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                         <option value="not say">I'll rather not say</option>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="custom-container input-field">
                     <div class="custom">
-                        <input type="text" placeholder="Any allergies? if Yes, kindly state it">
+                        <input type="text" placeholder="Any allergies? if Yes, kindly state it" required v-model="allergies">
                         <div class="icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M12.6935 4.36019L15.6398 7.30647M13.9435 3.11019C14.7571 2.2966 16.0762 2.2966 16.8898 3.11019C17.7034 3.92379 17.7034 5.24288 16.8898 6.05647L5.41667 17.5296H2.5V14.5537L13.9435 3.11019Z" stroke="#5C5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -65,8 +65,8 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <select name="smoker" id="smoker">
-                        <option value="#">Are you a smoker?</option>
+                    <select name="smoker" id="smoker" required v-model="smoker">
+                        <option value="" disabled>Are you a smoker?</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                         <option value="formerly">Used to be</option>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="custom-container input-field">
                     <div class="custom">
-                        <textarea placeholder="Any pre-existing medical condition? if yes, please share" cols="30" rows="6"></textarea>
+                        <textarea placeholder="Any pre-existing medical condition? if yes, please share" cols="30" rows="6" required v-model="priorConditions"></textarea>
                         <div class="icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M12.6935 4.36019L15.6398 7.30647M13.9435 3.11019C14.7571 2.2966 16.0762 2.2966 16.8898 3.11019C17.7034 3.92379 17.7034 5.24288 16.8898 6.05647L5.41667 17.5296H2.5V14.5537L13.9435 3.11019Z" stroke="#5C5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="btns">
-                <a href="#" class="skip-btn btn">Skip</a>
+                <a href="#" class="skip-btn btn" @click="$router.push({ name: 'chat', params: { userId: 1}})">Skip</a>
                 <button class="btn submit-btn">Submit</button>
             </div>
         </form>
@@ -93,17 +93,29 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
     export default {
         setup(){
             const router = useRouter()
+            const gender = ref('')
+            const firstName = ref('')
+            const lastName = ref('')
+            const allergies = ref('')
+            const priorConditions = ref('')
+            const highBloodPressure = ref('')
+            const smoker = ref('')
+            const date = ref('')
+            
+
+            
 
             function submitForm(){
                 router.push({ name: 'chat', params:{ userId: 1}})
             }
 
-            return { submitForm }
+            return { submitForm, gender, smoker, highBloodPressure, priorConditions, allergies, firstName, lastName, date }
         }
         
     }
