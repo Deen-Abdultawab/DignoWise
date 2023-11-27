@@ -46,8 +46,11 @@
                 </div>
                 <p id="error">{{ errorMessage }}</p>
             </div>
-           
-            <button type="submit" class="btn">Sign up</button>
+           <div>
+            <button type="submit" class="btn" v-if="!isPending">Sign up</button>
+            <button type="submit" class="btn" v-if="isPending" disabled>Loading...</button>
+           </div>
+           <p id="err">{{ err }}</p>
         </form>
         <div class="auth-req">
             <p>Already have an account?</p> 
@@ -82,6 +85,7 @@
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import useSignup from '@/function/useSignup';
 
     export default {
         setup(){
@@ -95,18 +99,22 @@ import { useRouter } from 'vue-router';
             const showPassword = ref(false)
             const error = ref(false)
             const confirmPassword = ref('')
+            const success = ref(false)
+            const successText = ref('')
+            const { error: err, signup, isPending } = useSignup()
+
+            
 
             function handleCheck(e){
                 const value = e.target.value.toLowerCase()
                 if(value != password.value.toLowerCase()){
                     errorMessage.value = 'password does not match'
-                    console.log('no')
                 } else {
                     errorMessage.value = ''
                 }
             }
             
-            function submitForm(){
+           async function submitForm(){
 
                 if(password.value == confirmPassword.value){
                     errorMessage.value = ''
@@ -140,11 +148,42 @@ import { useRouter } from 'vue-router';
                     return
                 } else {
                     error.value = false
+                }
+
+                if(isPending){
+                    success.value = true
+                    successText.value = 'signing up...'
+
+                } else {
+                    success.value = false
+                    successText.value = ''
+                }
+                const res = await signup(mail.value, password.value)
+                if(!error.value){
                     router.push({ name: 'details'})
                 }
 
+                // await fetch('https://dognowise.onrender.com/api/v1/users/signup', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json'},
+                //     body: JSON.stringify({
+                //         "email": mail.value,
+                //         "password": password.value,
+                //         "passwordConfirm": confirmPassword.value
+                //     })
+                // })
+                // .then(res=> {
+                //     if(!res.okay){
+                //         throw Error('signup failed')
+                //     }
+                //     router.push({ name: 'details'})
+
+                // })
+                // .catch(err => console.log(err.message))
             }
-            return{ clicked, submitForm, errorMessage, mail, password, accepted, showPassword, handleCheck, error, errorText, confirmPassword }
+
+
+            return{ clicked, submitForm, errorMessage, mail, password, accepted, showPassword, handleCheck, error, errorText, confirmPassword, success, successText, isPending, err }
         }
     }
 </script>
@@ -157,7 +196,9 @@ import { useRouter } from 'vue-router';
         position: relative;
     }
 
-    #error {
+    
+
+    #error, #err {
         color: red;
     }
 
@@ -176,6 +217,10 @@ import { useRouter } from 'vue-router';
         letter-spacing: 0.0225rem;
         margin-bottom: 1.25rem;
         padding: 0.5rem;
+    }
+
+    .success-field {
+        background: green;
     }
     .logo-img {
         width: 4.0625rem;

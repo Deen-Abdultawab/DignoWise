@@ -64,7 +64,7 @@
                     <div class="user-img">
                         <img src="../assets/images/profileImg.png" alt="">
                     </div>
-                    <h3>John Doe</h3>
+                    <h3>{{ name }}</h3>
                 </div>
             </div>
             
@@ -77,7 +77,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
     export default {
-        props: ['title', 'logo'],
+        props: ['title', 'logo', 'name'],
         setup(){
             const showNav = ref(false)
             const router = useRouter()

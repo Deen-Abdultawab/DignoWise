@@ -48,7 +48,7 @@
                 
                 <div class="input-field">
                     <select name="highbp" id="highbp" required v-model="highBloodPressure">
-                        <option value="" disabled>Any allergies? if Yes, kindly state it</option>
+                        <option value="" disabled>Ever diagnosed with high blod pressure?</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                         <option value="not say">I'll rather not say</option>
@@ -112,7 +112,7 @@ import { useRouter } from 'vue-router';
             
 
             function submitForm(){
-                router.push({ name: 'chat', params:{ userId: 1}})
+                router.push({ name: 'chat', params:{ userId: firstName.value }})
             }
 
             return { submitForm, gender, smoker, highBloodPressure, priorConditions, allergies, firstName, lastName, date }

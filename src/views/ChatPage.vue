@@ -1,13 +1,13 @@
 <template>
     <div class="chat-page">
-        <Navbar :logo="logo" :title="title" class="navbar"/>
+        <Navbar :logo="logo" :title="title" :name="name" class="navbar"/>
         <section class="text-area">
             <div class="intro-section" v-if="!startDiagnosis">
                 <div class="logo">
                     <img src="../assets/images/logo.png" alt="">
                 </div>
                 <div class="main-container section-container">
-                    <h3 class="hero-text">Hello John, </h3>
+                    <h3 class="hero-text">Hello {{ name }}, </h3>
                     <p class="hero-desc">Embark on Your Health Journey with DignoWise</p>
                     <div class="cards-container">
                         <article class="card">
@@ -27,10 +27,18 @@
                     </div>
                 </div>
             </div>
-            <ChatBox v-else :chats="chats"/>
+            <iframe ref="loadScript">
+                
+            </iframe>
+            <!-- <ChatBox v-else :chats="chats"/> -->    
         </section>
         <section class="nav-section section-container">
-            <div class="btns">
+            <a href="https://mediafiles.botpress.cloud/a26a03f6-b52d-4e98-a737-c1a8f2dcba07/webchat/bot.html">
+                <button class="cus-btn btn">
+                    Continue to chat
+                </button>
+            </a>
+            <!-- <div class="btns">
                 <div class="mic icon btn">
                     <img src="../assets/images/microphone.png" alt="">
                 </div>
@@ -38,7 +46,7 @@
                 <div class="send icon btn" @click="handleState">
                     <img src="../assets/images/paper-plane.png" alt="">
                 </div>
-            </div>
+            </div> -->
             <p class="disclaimer">DignoWise may display inaccurate info, so double-check its responses</p>
         </section>
 
@@ -48,15 +56,18 @@
 <script>
 import Navbar from '@/components/Navbar.vue'
 import ChatBox from '@/components/ChatBox.vue'
-import { onUpdated, ref } from 'vue'
+import { onMounted, ref } from 'vue'
     export default {
         components: { Navbar, ChatBox },
         props: ['userId'],
-        setup(){
+        setup(props){
             const startDiagnosis = ref(false)
             const title = 'Symptoms Assesement'
             const logo = 'article-icon.png'
+            const name = props.userId
             const message = ref('')
+            const frameSrc = 'https://t.co/NgFPfQBvfV'
+            const loadScript = ref(null)
             
             const chats = ref([])
             
@@ -81,13 +92,25 @@ import { onUpdated, ref } from 'vue'
                 
             }
 
+            
 
-            return { startDiagnosis, handleState,title, logo, message, chats }
+            onMounted(()=>{
+
+                loadExternalScript()
+            })
+
+
+
+            return { startDiagnosis, handleState,title, logo, message, chats, name, frameSrc, loadScript }
         }
     }
 </script>
 
 <style scoped>
+
+    script {
+        display: block;
+    }
 
     .nav-section {
         margin-top: 0.5rem;
@@ -97,6 +120,20 @@ import { onUpdated, ref } from 'vue'
         height: 5.25rem;
         margin: 1rem auto 1.25rem;
         flex-shrink: 0;
+    }
+
+    .nav-section .btn {
+        border-radius: 0.5rem;
+        background: var(--primary-normal-active);
+        width: 100%;
+        padding: 0.6875rem 1.5rem;
+        color: var(--primary-light);
+        font-size: 0.875rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.125rem;
+        letter-spacing: 0.0175rem;
+        margin-bottom: 1rem;
     }
 
     .hero-text {

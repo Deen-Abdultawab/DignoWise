@@ -3,7 +3,7 @@
         <div class="logo-img">
             <img src="../assets/images/logo.png" alt="">
         </div>
-        <form class="input-container">
+        <form class="input-container" @submit.prevent="handleSubmit">
             <h3>Welcome back</h3>
             <div class="input-field">
                 <input type="email" required placeholder="Email address" v-model="mail">
@@ -25,9 +25,13 @@
                         </div>
                     </div>
                 </div>
-                <p>Forgot It?</p>
+                <p class="error">Forgot It?</p>
             </div>
-            <button class="btn">Sign In</button>
+            <div>
+                <button class="btn" v-if="!isPending">Sign In</button>
+                <button class="btn" v-if="isPending" disabled>Loading...</button>
+            </div>
+            <p>{{ error }}</p>
             <div class="auth-req">
                 <p>Don't have an account?</p> 
                 <router-link class="link" :to="{ name: 'signup'}">Create one</router-link>
@@ -54,6 +58,7 @@
 
 <script>
 import { ref } from 'vue'
+import useLogin from '@/function/useLogin'
 
     export default {
         setup(){
@@ -61,9 +66,34 @@ import { ref } from 'vue'
             const showPassword = ref(false)
             const mail = ref('')
             const password = ref('')
+            const { error, login, isPending } = useLogin()
+
+
+
+
+            async function handleSubmit(){
+
+
+                 const response = await login(mail.value, password.value)
+                 if(!error.value){
+                    router.push({ name: 'home'})
+                }
+
+
+                // await fetch('https://dognowise.onrender.com/api/v1/users/login', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json'},
+                //     body: JSON.stringify({
+                //         "email": mail.value,
+                //         "password": password.value,
+                //     })
+                // })
+                // .then(res=> console.log(res))
+                // .catch(err => console.log(err.message))
+            }
             
 
-            return{ clicked, showPassword, mail, password }
+            return{ clicked, showPassword, mail, password, handleSubmit, isPending, error }
         }
     }
 </script>
@@ -78,6 +108,10 @@ import { ref } from 'vue'
         width: 4.0625rem;
         height: 5.25rem;
         margin: 2.38rem auto 1.62rem;
+    }
+
+    .error {
+        color: red;
     }
 
     .input-container h3 {
@@ -151,7 +185,7 @@ import { ref } from 'vue'
         font-weight: 500;
         line-height: 1.125rem;
         letter-spacing: 0.0175rem;
-        margin-bottom: 1rem;
+        /* margin-bottom: 1rem; */
     }
 
     .link {
@@ -171,6 +205,7 @@ import { ref } from 'vue'
         align-items: center;
         justify-content: center;
         gap: 0.15rem;
+        margin-top: 1rem;
         
     }
 

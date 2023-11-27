@@ -33,22 +33,68 @@ import { ref } from 'vue';
             const logo = 'article-2.png'
             const url = 'https://newsapi.org/v2/top-headlines?country=ng&category=health&apiKey=9dc43693000c4e3896b62cec6d15cffc'
             const items = ref([])
-            const articles = ref([])
+           
 
-            // const articles = [
-            //     {
-            //         id: 1,
-            //         src: 'img1.png',
-            //         title: 'Do children get migraine headaches? What parents need to know',
-            //         source: 'Harvard Health Publishing'
-            //     },
-            // ]
+            const articles = [
+                {
+                    id: 1,
+                    src: 'img1.png',
+                    title: 'Do children get migraine headaches? What parents need to know',
+                    source: 'Harvard Health Publishing'
+                },
+                {
+                    id: 2,
+                    src: 'img2.png',
+                    title: 'Veggie Burgers: Health Tips from a Dietitian',
+                    source: 'Johns Hopkins Medicine'
+                },
+                {
+                    id: 3,
+                    src: 'img3.png',
+                    title: 'Kidneys, eyes, ears, and more: Why do we have a spare?',
+                    source: 'Harvard Health Publishing'
+                },
+                {
+                    id: 4,
+                    src: 'img4.png',
+                    title: 'Extreme heat projected to increase cardiovascular deaths',
+                    source: 'National Institutes of Health (NIH)'
+                },
+                {
+                    id: 7,
+                    src: 'img5.png',
+                    title: 'Mammogram Age Guidelines: What You Need to Know',
+                    source: 'Johns Hopkins Medicine'
+                },
+                {
+                    id: 6,
+                    src: 'img6.png',
+                    title: 'High levels of particulate air pollution associated with increased breast cancer incidence',
+                    source: 'National Institutes of Health (NIH)'
+                },
+                {
+                    id: 5,
+                    src: 'img7.png',
+                    title: 'Opill: Is this new birth control pill right for you?',
+                    source: 'Harvard Health Publishing'
+                },
+            ]
 
-            function fetchData(){
-                
-            }
+            // function fetchData() {
+            //     fetch(url)
+            //         .then(response => {
+            //             if (!response.ok) {
+            //                 throw new Error('Network response was not ok')
+            //             }
+            //             return response.json()
+            //         })
+            //         .then(data => {console.log(data.article)})
+            //         .catch(error => {
+            //             console.error('Error fetching data:', error)
+            //         });
+            //     }
 
-            fetchData()
+            // fetchData()
             
             
             
