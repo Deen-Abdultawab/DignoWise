@@ -59,6 +59,8 @@
 <script>
 import { ref } from 'vue'
 import useLogin from '@/function/useLogin'
+import getUser from '@/function/getUser'
+import { useRouter } from 'vue-router'
 
     export default {
         setup(){
@@ -67,6 +69,8 @@ import useLogin from '@/function/useLogin'
             const mail = ref('')
             const password = ref('')
             const { error, login, isPending } = useLogin()
+            const router = useRouter()
+            const {user} = getUser();
 
 
 
@@ -74,9 +78,9 @@ import useLogin from '@/function/useLogin'
             async function handleSubmit(){
 
 
-                 const response = await login(mail.value, password.value)
+                const response = await login(mail.value, password.value)
                  if(!error.value){
-                    router.push({ name: 'home'})
+                    router.push({ name: 'details'})
                 }
 
 
