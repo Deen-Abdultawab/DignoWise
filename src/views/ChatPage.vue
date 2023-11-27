@@ -27,9 +27,9 @@
                     </div>
                 </div>
             </div>
-            <iframe ref="loadScript">
+            <!-- <iframe ref="loadScript">
                 
-            </iframe>
+            </iframe> -->
             <!-- <ChatBox v-else :chats="chats"/> -->    
         </section>
         <section class="nav-section section-container">
@@ -94,10 +94,10 @@ import { onMounted, ref } from 'vue'
 
             
 
-            onMounted(()=>{
+            // onMounted(()=>{
 
-                loadExternalScript()
-            })
+            //     loadExternalScript()
+            // })
 
 
 

@@ -36,14 +36,14 @@
                         <article class="header title">
                             <h3>Recent</h3>
                             <div class="arrows">
-                                <img src="../assets/images/arrow.png" alt="" class="icon">
-                                <!-- <img src="../assets/images/arrow-down.png" alt="" class="icon"> -->
+                                <img src="../assets/images/arrow.png" alt="" class="icon" v-if="showRecent" @click="showRecent = false">
+                                <img src="../assets/images/arrow-down.png" alt="" class="icon" v-else @click="showRecent = true">
                             </div>
                         </article>
                         <div class="history">
-                            <article class="item">
+                            <!-- <article class="item">
                                 <h3>Headache</h3>
-                            </article>
+                            </article> -->
                         </div>
                     </div>
                     <div class="last">
@@ -81,6 +81,7 @@ import { useRouter } from 'vue-router';
         setup(){
             const showNav = ref(false)
             const router = useRouter()
+            const showRecent =  ref(false)
             function showArticle(){
                 router.push({ name: 'article'})
             }
@@ -90,7 +91,7 @@ import { useRouter } from 'vue-router';
             }
            
 
-            return { showNav, showArticle, handleRoute }
+            return { showNav, showArticle, handleRoute, showRecent }
         }
     }
 </script>
