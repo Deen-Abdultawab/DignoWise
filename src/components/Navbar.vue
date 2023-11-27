@@ -61,10 +61,21 @@
                 </div>
                 
                 <div class="btm section-container">
-                    <div class="user-img">
-                        <img src="../assets/images/profileImg.png" alt="">
+                    <div class="user-btm">
+                        <div class="user-img">
+                            <img src="../assets/images/profileImg.png" alt="">
+                        </div>
+                        <h3>{{ name }}</h3>
                     </div>
-                    <h3>{{ name }}</h3>
+                    <div class="log-out" @click="handleLogout">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M14.1667 13.3333L17.5 9.99998M17.5 9.99998L14.1667 6.66665M17.5 9.99998L5.83333 9.99998M10.8333 13.3333V14.1666C10.8333 15.5474 9.71405 16.6666 8.33334 16.6666H5C3.61929 16.6666 2.5 15.5474 2.5 14.1666V5.83331C2.5 4.4526 3.61929 3.33331 5 3.33331H8.33334C9.71405 3.33331 10.8333 4.4526 10.8333 5.83331V6.66665" stroke="#EA4F55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                        </div>
+                        <h3>Log out</h3>
+                    
+                    </div>
                 </div>
             </div>
             
@@ -75,6 +86,7 @@
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import useLogout from '@/function/useLogout'
 
     export default {
         props: ['title', 'logo', 'name'],
@@ -82,6 +94,7 @@ import { useRouter } from 'vue-router';
             const showNav = ref(false)
             const router = useRouter()
             const showRecent =  ref(false)
+            const {logout} = useLogout()
             function showArticle(){
                 router.push({ name: 'article'})
             }
@@ -89,9 +102,14 @@ import { useRouter } from 'vue-router';
             function handleRoute(){
                 router.push({ name: 'chat', params:{ userId: 1} })
             }
+
+            async function handleLogout(){
+                await logout()
+                router.push({ name: 'home'})
+            }
            
 
-            return { showNav, showArticle, handleRoute, showRecent }
+            return { showNav, showArticle, handleRoute, showRecent, handleLogout }
         }
     }
 </script>
@@ -108,9 +126,27 @@ import { useRouter } from 'vue-router';
         padding: 1.75rem 1rem;
     }
 
+    .log-out .icon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .log-out h3 {
+        color: var(--text-error-normal);
+    }
+
     .btm {
         display: flex;
+        /* align-items: center; */
+        flex-direction: column;
+        margin-bottom: 1.75rem;
+        gap: 0.88rem;
+    }
+
+    .user-btm, .log-out {
+         display: flex;
         align-items: center;
+        /* flex-direction: column; */
         margin-bottom: 1.75rem;
         gap: 0.88rem;
     }
